@@ -1,0 +1,56 @@
+<section class="page">
+  <div class="page-header">
+    <div>
+      <h1>Catálogo de productos</h1>
+      <p>Explora el catálogo de Carvajal y agrega lo que te gustaría comprar a tu lista de deseos.</p>
+    </div>
+  </div>
+
+  @if (toast()) {
+    <div class="toast" [class.toast-error]="toast()!.type === 'error'">{{ toast()!.text }}</div>
+  }
+
+  @if (loading()) {
+    <div class="empty-state">Cargando catálogo...</div>
+  } @else if (errorMessage()) {
+    <div class="alert alert-error">{{ errorMessage() }}</div>
+  } @else if (products().length === 0) {
+    <div class="empty-state">Aún no hay productos en el catálogo.</div>
+  } @else {
+    <div class="grid">
+      @for (product of products(); track product.id) {
+        <article class="card product-card">
+          <div class="product-top">
+            <span class="sku">{{ product.sku }}</span>
+            @if (product.stock > 0) {
+              <span class="badge badge-success">{{ product.stock }} en stock</span>
+            } @else {
+              <span class="badge badge-danger">Sin stock</span>
+            }
+          </div>
+          <h3>{{ product.name }}</h3>
+          <p class="description">{{ product.description }}</p>
+          <div class="price">{{ product.price | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</div>
+
+          <div class="product-actions">
+            <input
+              type="number"
+              min="1"
+              [max]="product.stock > 0 ? product.stock : 1"
+              [(ngModel)]="quantities[product.id]"
+              [disabled]="product.stock === 0"
+              class="qty-input"
+            />
+            <button
+              class="btn btn-primary"
+              [disabled]="product.stock === 0 || addingIds.has(product.id)"
+              (click)="addToWishlist(product)"
+            >
+              {{ addingIds.has(product.id) ? 'Agregando...' : 'Agregar a deseos' }}
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  }
+</section>

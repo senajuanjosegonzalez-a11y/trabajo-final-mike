@@ -1,0 +1,100 @@
+name: carvajal-wishlist
+
+services:
+
+  # ---------------------------------------------------------------------
+  # Base de datos: una sola instancia de MySQL con una base de datos por
+  # microservicio (auth_db, product_db, wishlist_db), creadas por el
+  # script docs/init-db/01-create-databases.sql. Cada servicio crea sus
+  # propias tablas (schema.sql) y datos simulados (data.sql) al arrancar.
+  # ---------------------------------------------------------------------
+  mysql:
+    image: mysql:8.0
+    container_name: carvajal-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./docs/init-db:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  auth-service:
+    build: ./auth-service
+    container_name: auth-service
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: auth_db
+      DB_USER: root
+      DB_PASSWORD: root
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-MzZmODM3ZjZjMzM2NGRjMmExMzM4YzM4NDVjNDU2YjA5ZjNlZTIwNzZkMWY3ZDA0NmYzMzQ0YTQ0YzM0YTZjNw==}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:-3600000}
+      SERVER_PORT: 8081
+    ports:
+      - "8081:8081"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  product-service:
+    build: ./product-service
+    container_name: product-service
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: product_db
+      DB_USER: root
+      DB_PASSWORD: root
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-MzZmODM3ZjZjMzM2NGRjMmExMzM4YzM4NDVjNDU2YjA5ZjNlZTIwNzZkMWY3ZDA0NmYzMzQ0YTQ0YzM0YTZjNw==}
+      SERVER_PORT: 8082
+    ports:
+      - "8082:8082"
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  wishlist-service:
+    build: ./wishlist-service
+    container_name: wishlist-service
+    restart: unless-stopped
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_NAME: wishlist_db
+      DB_USER: root
+      DB_PASSWORD: root
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-MzZmODM3ZjZjMzM2NGRjMmExMzM4YzM4NDVjNDU2YjA5ZjNlZTIwNzZkMWY3ZDA0NmYzMzQ0YTQ0YzM0YTZjNw==}
+      SERVER_PORT: 8083
+      # Dentro de la red de docker-compose, los servicios se resuelven por
+      # su nombre de servicio (DNS interno de Docker).
+      PRODUCT_SERVICE_URL: http://product-service:8082/api/v1
+    ports:
+      - "8083:8083"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      product-service:
+        condition: service_started
+
+  frontend:
+    build: ./frontend
+    container_name: wishlist-frontend
+    restart: unless-stopped
+    ports:
+      - "4200:80"
+    depends_on:
+      - auth-service
+      - product-service
+      - wishlist-service
+
+volumes:
+  mysql_data:

@@ -1,0 +1,218 @@
+--progress is a global compose flag, better use `docker compose --progress xx build ...
+ Image carvajal-wishlist-auth-service Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 656B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 365B 0.0s done
+#2 DONE 0.1s
+
+#3 [internal] load metadata for docker.io/library/eclipse-temurin:17-jre-alpine
+#3 DONE 0.8s
+
+#4 [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-17
+#4 DONE 0.8s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B 0.0s done
+#5 DONE 0.0s
+
+#6 [stage-1 1/3] FROM docker.io/library/eclipse-temurin:17-jre-alpine@sha256:45d19def67191d1df7d233282051ac2f6908c6b2d7eaef75441d7e7c721c6d01
+#6 resolve docker.io/library/eclipse-temurin:17-jre-alpine@sha256:45d19def67191d1df7d233282051ac2f6908c6b2d7eaef75441d7e7c721c6d01 0.1s done
+#6 DONE 0.1s
+
+#7 [stage-1 2/3] WORKDIR /app
+#7 CACHED
+
+#8 [build 1/5] FROM docker.io/library/maven:3.9-eclipse-temurin-17@sha256:44512abb01061e282da7a8f86fd3c8e50609538ff9644cdb132e1ff9fccdaecb
+#8 resolve docker.io/library/maven:3.9-eclipse-temurin-17@sha256:44512abb01061e282da7a8f86fd3c8e50609538ff9644cdb132e1ff9fccdaecb 0.1s done
+#8 DONE 0.1s
+
+#9 [internal] load build context
+#9 transferring context: 1.97kB 0.0s done
+#9 DONE 0.0s
+
+#10 [build 2/5] WORKDIR /app
+#10 CACHED
+
+#11 [build 3/5] COPY pom.xml .
+#11 CACHED
+
+#12 [build 4/5] COPY src ./src
+#12 CACHED
+
+#13 [build 5/5] RUN mvn -q -DskipTests clean package
+#13 7.284 ---------------------------------------------------
+#13 7.284 constituent[0]: file:/usr/share/maven/conf/logging/
+#13 7.285 constituent[1]: file:/usr/share/maven/lib/ext/redisson/README.txt
+#13 7.290 constituent[2]: file:/usr/share/maven/lib/ext/hazelcast/README.txt
+#13 7.290 constituent[3]: file:/usr/share/maven/lib/ext/README.txt
+#13 7.290 constituent[4]: file:/usr/share/maven/lib/ext/redisson/
+#13 7.290 constituent[5]: file:/usr/share/maven/lib/ext/hazelcast/
+#13 7.290 constituent[6]: file:/usr/share/maven/lib/plexus-cipher-2.0.jar
+#13 7.290 constituent[7]: file:/usr/share/maven/lib/maven-resolver-spi-1.9.27.jar
+#13 7.290 constituent[8]: file:/usr/share/maven/lib/org.eclipse.sisu.plexus-1.0.0.jar
+#13 7.290 constituent[9]: file:/usr/share/maven/lib/maven-artifact-3.9.16.jar
+#13 7.290 constituent[10]: file:/usr/share/maven/lib/maven-resolver-provider-3.9.16.jar
+#13 7.290 constituent[11]: file:/usr/share/maven/lib/failureaccess.license
+#13 7.290 constituent[12]: file:/usr/share/maven/lib/httpcore-4.4.16.jar
+#13 7.290 constituent[13]: file:/usr/share/maven/lib/jspecify-1.0.0.jar
+#13 7.290 constituent[14]: file:/usr/share/maven/lib/plexus-sec-dispatcher.license
+#13 7.291 constituent[15]: file:/usr/share/maven/lib/guava-33.6.0-jre.jar
+#13 7.296 constituent[16]: file:/usr/share/maven/lib/httpclient.license
+#13 7.296 constituent[17]: file:/usr/share/maven/lib/jansi-2.4.3.jar
+#13 7.296 constituent[18]: file:/usr/share/maven/lib/maven-compat-3.9.16.jar
+#13 7.296 constituent[19]: file:/usr/share/maven/lib/jcl-over-slf4j-1.7.36.jar
+#13 7.296 constituent[20]: file:/usr/share/maven/lib/gson-2.13.2.jar
+#13 7.296 constituent[21]: file:/usr/share/maven/lib/guava.license
+#13 7.296 constituent[22]: file:/usr/share/maven/lib/guice.license
+#13 7.296 constituent[23]: file:/usr/share/maven/lib/maven-resolver-transport-file-1.9.27.jar
+#13 7.296 constituent[24]: file:/usr/share/maven/lib/maven-resolver-named-locks-1.9.27.jar
+#13 7.296 constituent[25]: file:/usr/share/maven/lib/maven-model-3.9.16.jar
+#13 7.296 constituent[26]: file:/usr/share/maven/lib/asm.license
+#13 7.296 constituent[27]: file:/usr/share/maven/lib/maven-settings-3.9.16.jar
+#13 7.296 constituent[28]: file:/usr/share/maven/lib/maven-resolver-transport-wagon-1.9.27.jar
+#13 7.296 constituent[29]: file:/usr/share/maven/lib/plexus-component-annotations.license
+#13 7.296 constituent[30]: file:/usr/share/maven/lib/ext/
+#13 7.296 constituent[31]: file:/usr/share/maven/lib/error_prone_annotations-2.41.0.jar
+#13 7.296 constituent[32]: file:/usr/share/maven/lib/javax.inject-1.jar
+#13 7.296 constituent[33]: file:/usr/share/maven/lib/commons-codec-1.21.0.jar
+#13 7.296 constituent[34]: file:/usr/share/maven/lib/maven-resolver-util-1.9.27.jar
+#13 7.296 constituent[35]: file:/usr/share/maven/lib/javax.annotation-api-1.3.2.jar
+#13 7.296 constituent[36]: file:/usr/share/maven/lib/guice-5.1.0-classes.jar
+#13 7.300 constituent[37]: file:/usr/share/maven/lib/maven-builder-support-3.9.16.jar
+#13 7.300 constituent[38]: file:/usr/share/maven/lib/org.eclipse.sisu.inject.license
+#13 7.300 constituent[39]: file:/usr/share/maven/lib/javax.inject.license
+#13 7.300 constituent[40]: file:/usr/share/maven/lib/wagon-file-3.5.3.jar
+#13 7.300 constituent[41]: file:/usr/share/maven/lib/maven-resolver-connector-basic-1.9.27.jar
+#13 7.300 constituent[42]: file:/usr/share/maven/lib/org.eclipse.sisu.plexus.license
+#13 7.300 constituent[43]: file:/usr/share/maven/lib/plexus-cipher.license
+#13 7.300 constituent[44]: file:/usr/share/maven/lib/commons-codec.license
+#13 7.300 constituent[45]: file:/usr/share/maven/lib/jansi-native/
+#13 7.300 constituent[46]: file:/usr/share/maven/lib/javax.annotation-api.license
+#13 7.300 constituent[47]: file:/usr/share/maven/lib/maven-settings-builder-3.9.16.jar
+#13 7.300 constituent[48]: file:/usr/share/maven/lib/slf4j-api.license
+#13 7.300 constituent[49]: file:/usr/share/maven/lib/wagon-http-3.5.3.jar
+#13 7.300 constituent[50]: file:/usr/share/maven/lib/plexus-utils-3.6.1.jar
+#13 7.300 constituent[51]: file:/usr/share/maven/lib/plexus-interpolation-1.29.jar
+#13 7.300 constituent[52]: file:/usr/share/maven/lib/aopalliance-1.0.jar
+#13 7.300 constituent[53]: file:/usr/share/maven/lib/plexus-interpolation.license
+#13 7.300 constituent[54]: file:/usr/share/maven/lib/maven-model-builder-3.9.16.jar
+#13 7.300 constituent[55]: file:/usr/share/maven/lib/failureaccess-1.0.3.jar
+#13 7.301 constituent[56]: file:/usr/share/maven/lib/plexus-component-annotations-2.2.0.jar
+#13 7.301 constituent[57]: file:/usr/share/maven/lib/org.eclipse.sisu.inject-1.0.0.jar
+#13 7.301 constituent[58]: file:/usr/share/maven/lib/gson.license
+#13 7.301 constituent[59]: file:/usr/share/maven/lib/jcl-over-slf4j.license
+#13 7.303 constituent[60]: file:/usr/share/maven/lib/maven-shared-utils-3.4.2.jar
+#13 7.303 constituent[61]: file:/usr/share/maven/lib/maven-resolver-impl-1.9.27.jar
+#13 7.303 constituent[62]: file:/usr/share/maven/lib/maven-core-3.9.16.jar
+#13 7.303 constituent[63]: file:/usr/share/maven/lib/slf4j-api-1.7.36.jar
+#13 7.303 constituent[64]: file:/usr/share/maven/lib/maven-repository-metadata-3.9.16.jar
+#13 7.303 constituent[65]: file:/usr/share/maven/lib/commons-cli.license
+#13 7.303 constituent[66]: file:/usr/share/maven/lib/maven-resolver-transport-http-1.9.27.jar
+#13 7.303 constituent[67]: file:/usr/share/maven/lib/httpcore.license
+#13 7.304 constituent[68]: file:/usr/share/maven/lib/error_prone_annotations.license
+#13 7.304 constituent[69]: file:/usr/share/maven/lib/commons-cli-1.11.0.jar
+#13 7.304 constituent[70]: file:/usr/share/maven/lib/asm-9.9.1.jar
+#13 7.304 constituent[71]: file:/usr/share/maven/lib/maven-embedder-3.9.16.jar
+#13 7.304 constituent[72]: file:/usr/share/maven/lib/jansi.license
+#13 7.304 constituent[73]: file:/usr/share/maven/lib/maven-slf4j-provider-3.9.16.jar
+#13 7.304 constituent[74]: file:/usr/share/maven/lib/wagon-provider-api-3.5.3.jar
+#13 7.304 constituent[75]: file:/usr/share/maven/lib/jspecify.license
+#13 7.304 constituent[76]: file:/usr/share/maven/lib/plexus-sec-dispatcher-2.0.jarException in thread "main" java.lang.ClassFormatError: Incompatible magic value 0 in class file javax/naming/NamingException
+#13 7.307 	at java.base/java.lang.ClassLoader.findBootstrapClass(Native Method)
+#13 7.307 	at java.base/java.lang.ClassLoader.findBootstrapClassOrNull(ClassLoader.java:1267)
+#13 7.307 	at java.base/java.lang.System$2.findBootstrapClassOrNull(System.java:2327)
+#13 7.307 	at java.base/jdk.internal.loader.ClassLoaders$BootClassLoader.loadClassOrNull(ClassLoaders.java:140)
+#13 7.307 constituent[77]: file:/usr/share/maven/lib/maven-resolver-api-1.9.27.jar
+#13 7.307 constituent[78]: file:/usr/share/maven/lib/aopalliance.license
+#13 7.307 constituent[79]: file:/usr/share/maven/lib/plexus-utils.license
+#13 7.307 constituent[80]: file:/usr/share/maven/lib/httpclient-4.5.14.jar
+#13 7.307 constituent[81]: file:/usr/share/maven/lib/wagon-http-shared-3.5.3.jar
+#13 7.307 constituent[82]: file:/usr/share/maven/lib/maven-plugin-api-3.9.16.jar
+#13 7.307 ---------------------------------------------------
+#13 7.311 
+#13 7.311 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:700)
+#13 7.311 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:669)
+#13 7.311 	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:639)
+#13 7.311 	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+#13 7.311 	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:579)
+#13 7.311 	at org.codehaus.plexus.classworlds.realm.ClassRealm.unsynchronizedLoadClass(ClassRealm.java:208)
+#13 7.311 	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:202)
+#13 7.311 	at org.codehaus.plexus.classworlds.realm.ClassRealm.loadClass(ClassRealm.java:198)
+#13 7.311 	at org.apache.http.conn.ssl.SSLConnectionSocketFactory.getDefaultHostnameVerifier(SSLConnectionSocketFactory.java:183)
+#13 7.311 	at org.eclipse.aether.transport.http.GlobalState.newConnectionManager(GlobalState.java:164)
+#13 7.311 	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
+#13 7.311 	at org.eclipse.aether.transport.http.GlobalState.getConnectionManager(GlobalState.java:141)
+#13 7.311 	at org.eclipse.aether.transport.http.LocalState.<init>(LocalState.java:55)
+#13 7.311 	at org.eclipse.aether.transport.http.HttpTransporter.<init>(HttpTransporter.java:207)
+#13 7.311 	at org.eclipse.aether.transport.http.HttpTransporterFactory.newInstance(HttpTransporterFactory.java:95)
+#13 7.311 	at org.eclipse.aether.internal.impl.DefaultTransporterProvider.newTransporter(DefaultTransporterProvider.java:94)
+#13 7.311 	at org.eclipse.aether.connector.basic.BasicRepositoryConnector.<init>(BasicRepositoryConnector.java:128)
+#13 7.311 	at org.eclipse.aether.connector.basic.BasicRepositoryConnectorFactory.newInstance(BasicRepositoryConnectorFactory.java:172)
+#13 7.311 	at org.eclipse.aether.internal.impl.DefaultRepositoryConnectorProvider.newRepositoryConnector(DefaultRepositoryConnectorProvider.java:122)
+#13 7.311 	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.performDownloads(DefaultArtifactResolver.java:549)
+#13 7.311 	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolve(DefaultArtifactResolver.java:450)
+#13 7.311 	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifacts(DefaultArtifactResolver.java:261)
+#13 7.311 	at org.eclipse.aether.internal.impl.DefaultArtifactResolver.resolveArtifact(DefaultArtifactResolver.java:243)
+#13 7.311 	at org.eclipse.aether.internal.impl.DefaultRepositorySystem.resolveArtifact(DefaultRepositorySystem.java:278)
+#13 7.311 	at org.apache.maven.project.ProjectModelResolver.resolveModel(ProjectModelResolver.java:172)
+#13 7.311 	at org.apache.maven.project.ProjectModelResolver.resolveModel(ProjectModelResolver.java:218)
+#13 7.311 	at org.apache.maven.model.building.DefaultModelBuilder.readParentExternally(DefaultModelBuilder.java:1035)
+#13 7.311 	at org.apache.maven.model.building.DefaultModelBuilder.readParent(DefaultModelBuilder.java:827)
+#13 7.311 	at org.apache.maven.model.building.DefaultModelBuilder.build(DefaultModelBuilder.java:336)
+#13 7.311 	at org.apache.maven.model.building.DefaultModelBuilder.build(DefaultModelBuilder.java:248)
+#13 7.311 	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:447)
+#13 7.311 	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:410)
+#13 7.313 	at org.apache.maven.project.DefaultProjectBuilder.build(DefaultProjectBuilder.java:367)
+#13 7.313 	at org.apache.maven.graph.DefaultGraphBuilder.collectProjects(DefaultGraphBuilder.java:351)
+#13 7.313 	at org.apache.maven.graph.DefaultGraphBuilder.getProjectsForMavenReactor(DefaultGraphBuilder.java:342)
+#13 7.313 	at org.apache.maven.graph.DefaultGraphBuilder.build(DefaultGraphBuilder.java:76)
+#13 7.313 	at org.apache.maven.DefaultMaven.buildGraph(DefaultMaven.java:448)
+#13 7.315 	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:197)
+#13 7.315 	at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:173)
+#13 7.315 	at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:101)
+#13 7.315 	at org.apache.maven.cli.MavenCli.execute(MavenCli.java:919)
+#13 7.315 	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:285)
+#13 7.315 	at org.apache.maven.cli.MavenCli.main(MavenCli.java:207)
+#13 7.315 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+#13 7.315 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+#13 7.315 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+#13 7.315 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+#13 7.315 	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
+#13 7.315 	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
+#13 7.315 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:362)
+#13 7.315 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
+#13 ERROR: process "/bin/sh -c mvn -q -DskipTests clean package" did not complete successfully: exit code: 1
+------
+ > [build 5/5] RUN mvn -q -DskipTests clean package:
+7.315 	at org.apache.maven.cli.MavenCli.doMain(MavenCli.java:285)
+7.315 	at org.apache.maven.cli.MavenCli.main(MavenCli.java:207)
+7.315 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+7.315 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+7.315 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+7.315 	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+7.315 	at org.codehaus.plexus.classworlds.launcher.Launcher.launchEnhanced(Launcher.java:255)
+7.315 	at org.codehaus.plexus.classworlds.launcher.Launcher.launch(Launcher.java:201)
+7.315 	at org.codehaus.plexus.classworlds.launcher.Launcher.mainWithExitCode(Launcher.java:362)
+7.315 	at org.codehaus.plexus.classworlds.launcher.Launcher.main(Launcher.java:314)
+------
+Dockerfile:6
+
+--------------------
+
+   4 |     COPY pom.xml .
+
+   5 |     COPY src ./src
+
+   6 | >>> RUN mvn -q -DskipTests clean package
+
+   7 |     
+
+   8 |     # ---- Etapa de ejecución ----
+
+--------------------
+
+failed to solve: process "/bin/sh -c mvn -q -DskipTests clean package" did not complete successfully: exit code: 1
+

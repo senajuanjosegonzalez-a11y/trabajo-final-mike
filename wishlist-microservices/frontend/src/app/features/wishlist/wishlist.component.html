@@ -1,0 +1,54 @@
+<section class="page">
+  <div class="page-header">
+    <div>
+      <h1>Mi lista de deseos</h1>
+      <p>Estos son los productos que te gustaría comprar más adelante.</p>
+    </div>
+    @if (items().length > 0) {
+      <div class="total-chip">Total estimado: <b>{{ totalEstimado() | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</b></div>
+    }
+  </div>
+
+  @if (toast()) {
+    <div class="toast" [class.toast-error]="toast()!.type === 'error'">{{ toast()!.text }}</div>
+  }
+
+  @if (loading()) {
+    <div class="empty-state">Cargando tu lista de deseos...</div>
+  } @else if (errorMessage()) {
+    <div class="alert alert-error">{{ errorMessage() }}</div>
+  } @else if (items().length === 0) {
+    <div class="empty-state card">
+      <h3>Tu lista de deseos está vacía</h3>
+      <p>Explora el catálogo y agrega los productos que te gustaría comprar.</p>
+      <a routerLink="/catalog" class="btn btn-primary">Ir al catálogo</a>
+    </div>
+  } @else {
+    <div class="wishlist-list">
+      @for (item of items(); track item.id) {
+        <article class="card wishlist-row" [class.unavailable]="!item.disponible">
+          <div class="row-main">
+            <h3>{{ item.productName }}</h3>
+            @if (!item.disponible) {
+              <span class="badge badge-danger">{{ item.mensaje }}</span>
+            } @else {
+              <span class="badge badge-success">Disponible ({{ item.stockDisponible }} en stock)</span>
+            }
+          </div>
+
+          <div class="row-price">{{ item.price | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</div>
+
+          <div class="qty-stepper">
+            <button class="step-btn" (click)="changeQuantity(item, -1)" [disabled]="busyIds.has(item.id) || item.quantity <= 1">−</button>
+            <span>{{ item.quantity }}</span>
+            <button class="step-btn" (click)="changeQuantity(item, 1)" [disabled]="busyIds.has(item.id)">+</button>
+          </div>
+
+          <button class="btn btn-danger" (click)="remove(item)" [disabled]="busyIds.has(item.id)">
+            Eliminar
+          </button>
+        </article>
+      }
+    </div>
+  }
+</section>

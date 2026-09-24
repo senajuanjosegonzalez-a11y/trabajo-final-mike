@@ -1,0 +1,28 @@
+<section class="auth-page">
+  <div class="auth-card card">
+    <div class="auth-mark">C</div>
+    <h1>Bienvenido de vuelta</h1>
+    <p>Ingresa a tu lista de deseos de Carvajal</p>
+
+    @if (errorMessage()) {
+      <div class="alert alert-error">{{ errorMessage() }}</div>
+    }
+
+    <form (ngSubmit)="submit()" #loginForm="ngForm">
+      <div class="field">
+        <label for="user">Usuario o correo</label>
+        <input id="user" name="user" type="text" [(ngModel)]="user" placeholder="ana.gomez" autocomplete="username" />
+      </div>
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <input id="password" name="password" type="password" [(ngModel)]="password" placeholder="••••••••" autocomplete="current-password" />
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block" [disabled]="loading()">
+        {{ loading() ? 'Ingresando...' : 'Iniciar sesión' }}
+      </button>
+    </form>
+
+    <p class="switch-link">¿No tienes cuenta? <a routerLink="/register">Regístrate aquí</a></p>
+  </div>
+</section>

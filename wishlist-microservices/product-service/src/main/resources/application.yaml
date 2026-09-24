@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: product-service
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:product_db}
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+
+server:
+  port: ${SERVER_PORT:8082}
+  servlet:
+    context-path: /api/v1
+
+security:
+  jwt:
+    # MISMA llave que auth-service, solo se usa aquí para VALIDAR el token
+    secret-key: ${JWT_SECRET_KEY:MzZmODM3ZjZjMzM2NGRjMmExMzM4YzM4NDVjNDU2YjA5ZjNlZTIwNzZkMWY3ZDA0NmYzMzQ0YTQ0YzM0YTZjNw==}

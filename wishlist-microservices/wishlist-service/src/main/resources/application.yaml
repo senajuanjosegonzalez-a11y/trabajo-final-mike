@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: wishlist-service
+  datasource:
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:wishlist_db}
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    defer-datasource-initialization: true
+  sql:
+    init:
+      mode: always
+
+server:
+  port: ${SERVER_PORT:8083}
+  servlet:
+    context-path: /api/v1
+
+security:
+  jwt:
+    # MISMA llave que auth-service, solo se usa aquí para VALIDAR el token
+    secret-key: ${JWT_SECRET_KEY:MzZmODM3ZjZjMzM2NGRjMmExMzM4YzM4NDVjNDU2YjA5ZjNlZTIwNzZkMWY3ZDA0NmYzMzQ0YTQ0YzM0YTZjNw==}
+
+# URL base de product-service. En docker-compose apunta al nombre del
+# servicio ("product-service"); en desarrollo local sin Docker, a localhost.
+services:
+  product-service:
+    url: ${PRODUCT_SERVICE_URL:http://localhost:8082/api/v1}

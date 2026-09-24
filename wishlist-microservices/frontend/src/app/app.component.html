@@ -1,0 +1,27 @@
+<div class="app-shell">
+  <header class="topbar">
+    <a class="brand" routerLink="/">
+      <span class="brand-mark">C</span>
+      <span class="brand-text">Carvajal <b>Wishlist</b></span>
+    </a>
+
+    <nav class="nav-links" *ngIf="auth.isAuthenticated()">
+      <a routerLink="/catalog" routerLinkActive="active">Catálogo</a>
+      <a routerLink="/wishlist" routerLinkActive="active">Mi lista de deseos</a>
+    </nav>
+
+    <div class="nav-right">
+      @if (auth.isAuthenticated()) {
+        <span class="user-chip">{{ auth.currentUser()?.sub }}</span>
+        <button class="btn btn-ghost" (click)="logout()">Cerrar sesión</button>
+      } @else {
+        <a routerLink="/login" class="btn btn-ghost">Ingresar</a>
+        <a routerLink="/register" class="btn btn-primary">Crear cuenta</a>
+      }
+    </div>
+  </header>
+
+  <main class="content">
+    <router-outlet />
+  </main>
+</div>
