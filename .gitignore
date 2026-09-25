@@ -1,0 +1,36 @@
+# General
+.DS_Store
+*.log
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# Certificates and keys
+*.pem
+*.key
+*.crt
+*.cer
+
+# Build output
+**/target/
+**/node_modules/
+**/dist/
+**/.angular/
+**/.classpath
+**/.project
+**/.settings/
+
+# Docker volumes and local data
+**/mysql_data/
+**/db-data/
