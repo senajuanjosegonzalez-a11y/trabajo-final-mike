@@ -17,3 +17,8 @@ dist/
 
 # Env
 .env
+.env.*
+!.env.example
+
+# Logs and local build output
+*.log

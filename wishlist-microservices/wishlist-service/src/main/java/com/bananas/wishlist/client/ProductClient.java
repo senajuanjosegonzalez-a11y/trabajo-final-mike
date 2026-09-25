@@ -1,10 +1,16 @@
 package com.bananas.wishlist.client;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 import com.bananas.wishlist.dto.ProductDTO;
 
@@ -25,6 +31,7 @@ import lombok.extern.log4j.Log4j2;
 public class ProductClient {
 
     private final RestTemplate restTemplate;
+    private final HttpServletRequest request;
 
     @Value("${services.product-service.url}")
     private String productServiceUrl;
@@ -35,7 +42,19 @@ public class ProductClient {
      */
     public ProductDTO getProductById(Long productId) {
         try {
-            return restTemplate.getForObject(productServiceUrl + "/products/" + productId, ProductDTO.class);
+            HttpHeaders headers = new HttpHeaders();
+            String authorization = request.getHeader(HttpHeaders.AUTHORIZATION);
+            if (authorization != null) {
+                headers.set(HttpHeaders.AUTHORIZATION, authorization);
+            }
+
+            HttpEntity<Void> entity = new HttpEntity<>(headers);
+            ResponseEntity<ProductDTO> response = restTemplate.exchange(
+                    productServiceUrl + "/products/" + productId,
+                    HttpMethod.GET,
+                    entity,
+                    ProductDTO.class);
+            return response.getBody();
         } catch (HttpClientErrorException.NotFound e) {
             return null;
         } catch (RestClientException e) {

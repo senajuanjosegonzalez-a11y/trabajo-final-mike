@@ -4,8 +4,8 @@ spring:
   datasource:
     url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:product_db}
     driverClassName: com.mysql.cj.jdbc.Driver
-    username: ${DB_USER:root}
-    password: ${DB_PASSWORD:root}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
@@ -24,4 +24,4 @@ server:
 security:
   jwt:
     # MISMA llave que auth-service, solo se usa aquí para VALIDAR el token
-    secret-key: ${JWT_SECRET_KEY:MzZmODM3ZjZjMzM2NGRjMmExMzM4YzM4NDVjNDU2YjA5ZjNlZTIwNzZkMWY3ZDA0NmYzMzQ0YTQ0YzM0YTZjNw==}
+    secret-key: ${JWT_SECRET_KEY}

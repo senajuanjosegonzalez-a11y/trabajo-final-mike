@@ -13,14 +13,14 @@ services:
     container_name: carvajal-mysql
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Define MYSQL_ROOT_PASSWORD in .env}
     ports:
       - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./docs/init-db:/docker-entrypoint-initdb.d
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p$${MYSQL_ROOT_PASSWORD}"]
       interval: 5s
       timeout: 5s
       retries: 20
@@ -33,10 +33,10 @@ services:
       DB_HOST: mysql
       DB_PORT: 3306
       DB_NAME: auth_db
-      DB_USER: root
-      DB_PASSWORD: root
-      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-MzZmODM3ZjZjMzM2NGRjMmExMzM4YzM4NDVjNDU2YjA5ZjNlZTIwNzZkMWY3ZDA0NmYzMzQ0YTQ0YzM0YTZjNw==}
-      JWT_EXPIRATION: ${JWT_EXPIRATION:-3600000}
+      DB_USER: ${DB_USER:?Define DB_USER in .env}
+      DB_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD in .env}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:?Define JWT_SECRET_KEY in .env}
+      JWT_EXPIRATION: ${JWT_EXPIRATION:?Define JWT_EXPIRATION in .env}
       SERVER_PORT: 8081
     ports:
       - "8081:8081"
@@ -52,9 +52,9 @@ services:
       DB_HOST: mysql
       DB_PORT: 3306
       DB_NAME: product_db
-      DB_USER: root
-      DB_PASSWORD: root
-      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-MzZmODM3ZjZjMzM2NGRjMmExMzM4YzM4NDVjNDU2YjA5ZjNlZTIwNzZkMWY3ZDA0NmYzMzQ0YTQ0YzM0YTZjNw==}
+      DB_USER: ${DB_USER:?Define DB_USER in .env}
+      DB_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD in .env}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:?Define JWT_SECRET_KEY in .env}
       SERVER_PORT: 8082
     ports:
       - "8082:8082"
@@ -70,9 +70,9 @@ services:
       DB_HOST: mysql
       DB_PORT: 3306
       DB_NAME: wishlist_db
-      DB_USER: root
-      DB_PASSWORD: root
-      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-MzZmODM3ZjZjMzM2NGRjMmExMzM4YzM4NDVjNDU2YjA5ZjNlZTIwNzZkMWY3ZDA0NmYzMzQ0YTQ0YzM0YTZjNw==}
+      DB_USER: ${DB_USER:?Define DB_USER in .env}
+      DB_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD in .env}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:?Define JWT_SECRET_KEY in .env}
       SERVER_PORT: 8083
       # Dentro de la red de docker-compose, los servicios se resuelven por
       # su nombre de servicio (DNS interno de Docker).

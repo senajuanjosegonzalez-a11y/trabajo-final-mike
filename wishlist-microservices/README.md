@@ -109,10 +109,10 @@ proyecto base: `controller → service → repository → entity/dto`, más
 ### Pasos
 
 ```bash
-# 1. Ubicarse en la raíz del proyecto (donde está docker-compose.yml)
 cd wishlist-microservices
-
-# 2. Levantar todo el stack (construye las imágenes la primera vez)
+cp .env.example .env
+openssl rand -base64 32
+# Copia el resultado anterior en JWT_SECRET_KEY dentro de .env.
 docker compose up --build
 ```
 
@@ -224,9 +224,8 @@ en Docker.
 
 ## 6. Credenciales y datos precargados
 
-- **Base de datos (Docker Compose):** usuario `root`, contraseña `root`
-  (definidas en `docker-compose.yml`, solo para entorno de prueba/local;
-  nunca usar así en producción).
+- **Base de datos:** las credenciales se leen desde `.env`, que no debe
+  versionarse.
 - **Usuarios de la aplicación:** el proyecto **no trae usuarios
   precreados**. Se crean desde el frontend (**Crear cuenta**) o llamando
   directamente `POST /api/v1/auth/register` en `auth-service`. Los roles
@@ -234,9 +233,9 @@ en Docker.
 - **Catálogo de productos:** se simula automáticamente vía `data.sql` en
   `product-service` (8 productos, algunos con `stock = 0` a propósito
   para poder demostrar el requisito de "notificar si ya no hay stock").
-- **JWT:** llave secreta y tiempo de expiración configurables por variable
-  de entorno (`JWT_SECRET_KEY`, `JWT_EXPIRATION`); por defecto expira en 1
-  hora (`3600000` ms).
+- **JWT:** la llave secreta y el tiempo de expiración se configuran mediante
+  (`JWT_SECRET_KEY`, `JWT_EXPIRATION`); el ejemplo expira en 1 hora
+  (`3600000` ms).
 
 ---
 
